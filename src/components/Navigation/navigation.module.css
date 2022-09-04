@@ -1,0 +1,19 @@
+.container {
+  padding: 20px;
+}
+
+.list {
+  display: flex;
+  justify-content: space-around;
+}
+
+.link {
+  text-decoration: none;
+  color: inherit;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.active {
+  color: var(--hover-border-color);
+}

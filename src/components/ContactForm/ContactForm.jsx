@@ -7,19 +7,7 @@ export const ContactForm = ({ onSubmit }) => {
 
   const handleChange = event => {
     const { name, value } = event.target;
-
-    switch (name) {
-      case 'name':
-        setName(value);
-        break;
-
-      case 'number':
-        setNumber(value);
-        break;
-
-      default:
-        break;
-    }
+    name === 'name' ? setName(value) : setNumber(value);
   };
 
   const handleReset = event => {
@@ -50,8 +38,8 @@ export const ContactForm = ({ onSubmit }) => {
           <Input
             value={number}
             onChange={handleChange}
-            type="tel"
-            name="number"
+            type="number"
+            name="tel"
             pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
             title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
             required
