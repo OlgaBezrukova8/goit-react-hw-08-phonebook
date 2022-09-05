@@ -14,14 +14,6 @@ export const PhonebookPage = () => {
     dispatch(setFilter(target.value));
   };
 
-  // const [contacts, setContacts] = useState(
-  //   () => JSON.parse(window.localStorage.getItem('contacts')) ?? []
-  // );
-
-  // useEffect(() => {
-  //   window.localStorage.setItem('contacts', JSON.stringify(contacts));
-  // }, [contacts]);
-
   return (
     <>
       <Filter value={filter} onChange={onSetFilter} />

@@ -5,14 +5,6 @@ import { PhonebookPage } from '../pages/PhonebookPage/PhonebookPage';
 import { ContactsPage } from '../pages/ContactsPage/ContactsPage';
 
 export const App = () => {
-  // const [contacts, setContacts] = useState(
-  //   () => JSON.parse(window.localStorage.getItem('contacts')) ?? []
-  // );
-
-  // useEffect(() => {
-  //   window.localStorage.setItem('contacts', JSON.stringify(contacts));
-  // }, [contacts]);
-
   return (
     <Routes>
       <Route path="/" element={<Navigation />}>

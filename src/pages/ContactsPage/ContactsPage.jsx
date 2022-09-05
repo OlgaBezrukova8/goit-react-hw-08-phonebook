@@ -10,10 +10,6 @@ export const ContactsPage = () => {
   const dispatch = useDispatch();
   const contacts = useSelector(getItems);
 
-  // const [contacts, setContacts] = useState(
-  //   () => JSON.parse(window.localStorage.getItem('contacts')) ?? []
-  // );
-
   const isExists = contactName => {
     const arrayFilter = contacts.filter(
       contact => contact.name === contactName
@@ -23,7 +19,6 @@ export const ContactsPage = () => {
 
   const handleSubmit = event => {
     event.preventDefault();
-
     const { name, tel } = event.target;
 
     if (isExists(name.value)) {
@@ -32,6 +27,7 @@ export const ContactsPage = () => {
     } else {
       const contact = { id: name.value, name: name.value, number: tel.value };
       dispatch(addContact(contact));
+      return true;
     }
   };
 
