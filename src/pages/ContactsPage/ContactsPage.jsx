@@ -1,22 +1,23 @@
-// import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
+import { addContact } from '../../redux/items/items-actions';
+import { getItems } from '../../redux/items/items-selectors';
+
 import { ContactForm } from '../../components/ContactForm/ContactForm';
-import { addContact } from '../../redux/users/actions';
-import { getUsers } from '../../redux/users/selectors';
 
 export const ContactsPage = () => {
   const dispatch = useDispatch();
-  const users = useSelector(getUsers);
+  const contacts = useSelector(getItems);
 
   // const [contacts, setContacts] = useState(
   //   () => JSON.parse(window.localStorage.getItem('contacts')) ?? []
   // );
 
   const isExists = contactName => {
-    console.log(users);
-    const arrayFilter = users.filter(contact => contact.name === contactName);
+    const arrayFilter = contacts.filter(
+      contact => contact.name === contactName
+    );
     return arrayFilter.length !== 0;
   };
 

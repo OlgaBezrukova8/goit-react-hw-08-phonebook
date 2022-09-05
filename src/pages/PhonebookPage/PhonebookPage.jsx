@@ -1,12 +1,18 @@
-import { useState } from 'react';
-// import { useSelector } from 'react-redux';
-// import { getUsers } from '../../redux/users/selectors';
+import { useSelector, useDispatch } from 'react-redux';
+
+import { getFilter } from '../../redux/filter/filter-selectors';
+import { setFilter } from '../../redux/filter/filter-actions';
+
 import { Filter } from '../../components/Filter/Filter';
 import { ContactList } from '../../components/ContactList/ContactList';
 
 export const PhonebookPage = () => {
-  const [filter, setFilter] = useState('');
-  // const users = useSelector(getUsers);
+  const filter = useSelector(getFilter);
+  const dispatch = useDispatch();
+
+  const onSetFilter = ({ target }) => {
+    dispatch(setFilter(target.value));
+  };
 
   // const [contacts, setContacts] = useState(
   //   () => JSON.parse(window.localStorage.getItem('contacts')) ?? []
@@ -16,28 +22,9 @@ export const PhonebookPage = () => {
   //   window.localStorage.setItem('contacts', JSON.stringify(contacts));
   // }, [contacts]);
 
-  const handleFilter = event => {
-    setFilter(event.target.value);
-  };
-
-  // const getFilterName = () => {
-  //   const normalizedFilter = filter.toLowerCase();
-
-  //   return users.filter(el => el.name.toLowerCase().includes(normalizedFilter));
-  // };
-
-  // const deleteContact = useCallback(
-  //   contactId => {
-  //     setContacts(prevState => prevState.filter(({ id }) => id !== contactId));
-  //   },
-  //   [setContacts]
-  // );
-
-  // const visibleName = getFilterName();
-
   return (
     <>
-      <Filter value={filter} onChange={handleFilter} />
+      <Filter value={filter} onChange={onSetFilter} />
       <ContactList />
     </>
   );
