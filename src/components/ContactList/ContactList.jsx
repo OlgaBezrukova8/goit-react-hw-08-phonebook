@@ -7,9 +7,14 @@ import { deleteContact } from '../../redux/items/items-actions';
 import { ContactItem } from './ContactItem/ContactItem';
 import { Container } from './ContactList.module';
 
+// import { useGetContactsQuery } from '../../servises/contactsSliceApi';
+
 export const ContactList = () => {
   const contacts = useSelector(getFilteredContacts);
   const dispatch = useDispatch();
+
+//   const { data, isFetching } = useGetContactsQuery();
+// console.log(data);
 
   const contactsMap = contacts.map(({ id, name, number }) => (
     <ContactItem
