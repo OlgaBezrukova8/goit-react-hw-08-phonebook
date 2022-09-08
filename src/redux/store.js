@@ -1,11 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { setupListeners } from '@reduxjs/toolkit/query';
-import { contactsApi } from '../servises/contactsSliceApi';
-import rootReducer from './rootReducer';
+// import { setupListeners } from '@reduxjs/toolkit/query';
+import { contactsApi } from './contactsSliceApi';
+// import rootReducer from './rootReducer';
 
 export const store = configureStore({
   reducer: {
-    contacts: rootReducer,
+    // contacts: rootReducer,
     [contactsApi.reducerPath]: contactsApi.reducer,
   },
   middleware: getDefaultMiddleware => [
@@ -14,7 +14,7 @@ export const store = configureStore({
   ],
 });
 
-setupListeners(store.dispatch);
+// setupListeners(store.dispatch);
 
 // import {
 //   persistStore,

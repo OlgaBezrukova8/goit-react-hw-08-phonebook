@@ -1,33 +1,35 @@
-import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import { getFilteredContacts } from '../../redux/filter/filter-selectors';
-import { deleteContact } from '../../redux/items/items-actions';
+// import { getFilteredContacts } from '../../redux/filter/filter-selectors';
+// import { deleteContact } from '../../redux/items/items-actions';
 
 import { ContactItem } from './ContactItem/ContactItem';
+import { Loader } from '../Loader/Loader';
 import { Container } from './ContactList.module';
 
-// import { useGetContactsQuery } from '../../servises/contactsSliceApi';
+import { useGetContactQuery } from '../../redux/contactsSliceApi';
 
 export const ContactList = () => {
-  const contacts = useSelector(getFilteredContacts);
-  const dispatch = useDispatch();
-
-//   const { data, isFetching } = useGetContactsQuery();
-// console.log(data);
-
-  const contactsMap = contacts.map(({ id, name, number }) => (
-    <ContactItem
-      key={id}
-      name={name}
-      number={number}
-      onDeleteContact={() => dispatch(deleteContact(id))}
-    />
-  ));
+  const { data, error, isLoading } = useGetContactQuery();
 
   return (
     <Container>
-      <ul>{contactsMap}</ul>
+      <ul>
+        {error && <p></p>}
+        {isLoading ? (
+          <Loader />
+        ) : (
+          data.map(({ id, name, number }) => (
+            <ContactItem
+              key={id}
+              name={name}
+              number={number}
+              // onDeleteContact={() => dispatch(deleteContact(id))}
+              onDeleteContact={() => null}
+            />
+          ))
+        )}
+      </ul>
     </Container>
   );
 };
