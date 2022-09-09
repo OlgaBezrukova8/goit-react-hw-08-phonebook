@@ -1,14 +1,22 @@
+import { useDeleteContactMutation } from '../../../redux/contacts/contactsSliceApi';
 import { Item, Button, Text } from '../ContactList.module';
+import { getFilteredContacts } from '../../../redux/filter/filter-selectors';
 
-export const ContactItem = ({ id, name, number, onDeleteContact }) => {
+export const ContactItem = ({ data }) => {
+  const [deleteContact, { isLoading }] = useDeleteContactMutation();
+
   return (
     <>
-      <Item key={id}>
-        <Text>
-          {name}: {number}
-        </Text>
-        <Button onClick={onDeleteContact}>Delete</Button>
-      </Item>
+      {getFilteredContacts(data).map(({ id, name, number }) => (
+        <Item key={id}>
+          <Text>
+            {name}: {number}
+          </Text>
+          <Button onClick={() => deleteContact(id)} disabled={isLoading}>
+            Delete
+          </Button>
+        </Item>
+      ))}
     </>
   );
 };

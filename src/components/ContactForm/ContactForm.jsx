@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { Container, Label, Input } from './ContactForm.module';
 
 export const ContactForm = ({ onSubmit }) => {
-
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
 

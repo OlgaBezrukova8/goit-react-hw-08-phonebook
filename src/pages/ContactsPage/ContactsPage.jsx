@@ -1,45 +1,37 @@
-// import { useDispatch, useSelector } from 'react-redux';
-// import { Notify } from 'notiflix/build/notiflix-notify-aio';
-
-// import { getItems } from '../../redux/items/items-selectors';
-
+import { Notify } from 'notiflix';
 import { ContactForm } from '../../components/ContactForm/ContactForm';
 
-import { useAddContactMutation } from '../../redux/contactsSliceApi';
+import { useAddContactMutation } from '../../redux/contacts/contactsSliceApi';
+import { useGetContactQuery } from '../../redux/contacts/contactsSliceApi';
 
 export const ContactsPage = () => {
-  const [addContact, result] = useAddContactMutation();
-  console.log(result);
+  const [addContact] = useAddContactMutation();
+  const { data: contacts } = useGetContactQuery();
 
-  // const dispatch = useDispatch();
-  // const contacts = useSelector(getItems);
-
-  // const isExists = contactName => {
-  //   const arrayFilter = contacts.filter(
-  //     contact => contact.name === contactName
-  //   );
-  //   return arrayFilter.length !== 0;
-  // };
+  const isExists = contactName => {
+    const arrayFilter = contacts.filter(
+      contact => contact.name === contactName
+    );
+    return arrayFilter.length !== 0;
+  };
 
   const handleSubmit = async event => {
     event.preventDefault();
 
+    const { name, tel } = event.target;
+    const contact = { id: name.value, name: name.value, number: tel.value };
+
+    if (isExists(name.value)) {
+      Notify.warning(`${name.value} is already in contacts`);
+      return false;
+    }
     try {
-      await addContact(event);
+      await addContact(contact);
+      Notify.success('Contact added');
     } catch (error) {
+      Notify.failure('Error adding contact');
       console.log(error);
     }
-
-    // const { name, tel } = event.target;
-
-    // if (isExists(name.value)) {
-    //   Notify.warning(`${name.value} is already in contacts`);
-    //   return false;
-    // } else {
-    //   const contact = { id: name.value, name: name.value, number: tel.value };
-    //   dispatch(addContact(contact));
-    //   return true;
-    // }
   };
 
   return <ContactForm onSubmit={handleSubmit} />;

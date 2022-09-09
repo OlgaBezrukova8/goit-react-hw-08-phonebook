@@ -1,8 +1,12 @@
-// export const getFilter = ({ contacts }) => contacts.filter;
+export const getFilter = ({ filter }) => filter;
 
-// export const getFilteredContacts = ({ contacts }) => {
-//   const normalizedFilter = contacts.filter.toLowerCase();
-//   return contacts.items.filter(({ name }) =>
-//     name.toLowerCase().includes(normalizedFilter)
-//   );
-// };
+export const getFilteredContacts = (contacts, filter) => {
+  if (filter) {
+    const normalizedFilter = filter.toLowerCase();
+    return contacts.filter(({ name }) =>
+      name.toLowerCase().includes(normalizedFilter)
+    );
+  } else {
+    return contacts;
+  }
+};

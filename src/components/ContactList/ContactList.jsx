@@ -1,33 +1,26 @@
 import PropTypes from 'prop-types';
-
-// import { getFilteredContacts } from '../../redux/filter/filter-selectors';
-// import { deleteContact } from '../../redux/items/items-actions';
-
+import { useSelector } from 'react-redux';
 import { ContactItem } from './ContactItem/ContactItem';
 import { Loader } from '../Loader/Loader';
 import { Container } from './ContactList.module';
-
-import { useGetContactQuery } from '../../redux/contactsSliceApi';
+import {
+  getFilteredContacts,
+  getFilter,
+} from '../../redux/filter/filter-selectors';
+import { useGetContactQuery } from '../../redux/contacts/contactsSliceApi';
 
 export const ContactList = () => {
-  const { data, error, isLoading } = useGetContactQuery();
+  const { data, error, isFetching } = useGetContactQuery();
+  const filter = useSelector(getFilter);
 
   return (
     <Container>
       <ul>
-        {error && <p></p>}
-        {isLoading ? (
+        {error && <p>{error.message}</p>}
+        {isFetching ? (
           <Loader />
         ) : (
-          data.map(({ id, name, number }) => (
-            <ContactItem
-              key={id}
-              name={name}
-              number={number}
-              // onDeleteContact={() => dispatch(deleteContact(id))}
-              onDeleteContact={() => null}
-            />
-          ))
+          <ContactItem data={getFilteredContacts(data, filter)} />
         )}
       </ul>
     </Container>
