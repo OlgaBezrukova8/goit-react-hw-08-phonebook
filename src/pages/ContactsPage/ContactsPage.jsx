@@ -4,7 +4,7 @@ import { ContactForm } from '../../components/ContactForm/ContactForm';
 import { useAddContactMutation } from '../../redux/contacts/contactsSliceApi';
 import { useGetContactQuery } from '../../redux/contacts/contactsSliceApi';
 
-export const ContactsPage = () => {
+const ContactsPage = () => {
   const [addContact] = useAddContactMutation();
   const { data: contacts } = useGetContactQuery();
 
@@ -36,3 +36,5 @@ export const ContactsPage = () => {
 
   return <ContactForm onSubmit={handleSubmit} />;
 };
+
+export default ContactsPage;

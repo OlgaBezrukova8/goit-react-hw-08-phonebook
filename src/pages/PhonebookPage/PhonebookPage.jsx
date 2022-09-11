@@ -6,7 +6,7 @@ import { setFilter } from '../../redux/filter/filter-actions';
 import { Filter } from '../../components/Filter/Filter';
 import { ContactList } from '../../components/ContactList/ContactList';
 
-export const PhonebookPage = () => {
+const PhonebookPage = () => {
   const filter = useSelector(getFilter);
   const dispatch = useDispatch();
 
@@ -21,3 +21,5 @@ export const PhonebookPage = () => {
     </>
   );
 };
+
+export default PhonebookPage;
