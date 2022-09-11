@@ -1,4 +1,4 @@
-import { useDeleteContactMutation } from '../../../redux/contacts/contactsSliceApi';
+import { useDeleteContactMutation } from '../../../redux/contacts/contacts-slice';
 import { Item, Button, Text } from '../ContactList.module';
 import { getFilteredContacts } from '../../../redux/filter/filter-selectors';
 

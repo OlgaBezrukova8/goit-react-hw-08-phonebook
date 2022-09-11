@@ -1,8 +1,8 @@
 import { Notify } from 'notiflix';
 import { ContactForm } from '../../components/ContactForm/ContactForm';
 
-import { useAddContactMutation } from '../../redux/contacts/contactsSliceApi';
-import { useGetContactQuery } from '../../redux/contacts/contactsSliceApi';
+import { useAddContactMutation } from '../../redux/contacts/contacts-slice';
+import { useGetContactQuery } from '../../redux/contacts/contacts-slice';
 
 const ContactsPage = () => {
   const [addContact] = useAddContactMutation();

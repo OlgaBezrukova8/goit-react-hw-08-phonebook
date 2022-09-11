@@ -7,7 +7,7 @@ import {
   getFilteredContacts,
   getFilter,
 } from '../../redux/filter/filter-selectors';
-import { useGetContactQuery } from '../../redux/contacts/contactsSliceApi';
+import { useGetContactQuery } from '../../redux/contacts/contacts-slice';
 
 export const ContactList = () => {
   const { data, error, isFetching } = useGetContactQuery();
