@@ -8,14 +8,42 @@ export const authApi = createApi({
   tagTypes: ['Authentication'],
   endpoints: builder => ({
     signUp: builder.mutation({
-      query: contact => ({
+      query: user => ({
         url: '/users/signup',
         method: 'POST',
-        body: contact,
+        body: user,
       }),
+      invalidatesTags: ['Authentication'],
+    }),
+
+    logIn: builder.mutation({
+      query: user => ({
+        url: '/users/login',
+        method: 'POST',
+        body: user,
+      }),
+      invalidatesTags: ['Authentication'],
+    }),
+
+    logOut: builder.mutation({
+      query: user => ({
+        url: '/users/logout',
+        method: 'POST',
+        body: user,
+      }),
+      invalidatesTags: ['Authentication'],
+    }),
+
+    getCurrentUser: builder.query({
+      query: () => '/users/current',
       invalidatesTags: ['Authentication'],
     }),
   }),
 });
 
-export const { useSignUpMutation } = authApi;
+export const {
+  useSignUpMutation,
+  useLogInMutation,
+  useLogOutMutation,
+  useGetCurrentUserQuery,
+} = authApi;
