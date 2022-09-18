@@ -26,7 +26,7 @@ const ContactsPage = () => {
       return false;
     }
     try {
-      await addContact(contact);
+     await addContact(contact); 
       Notify.success('Contact added');
     } catch (error) {
       Notify.failure('Error adding contact');
