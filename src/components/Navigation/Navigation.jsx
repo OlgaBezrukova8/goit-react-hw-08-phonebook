@@ -1,23 +1,14 @@
-import { NavLink, Outlet } from 'react-router-dom';
-import { getNavigationClassName } from '../../functions/getNavigationClassName';
+import { Outlet } from 'react-router-dom';
+import { NavigationMenu } from '../Navigation/NavigationMenu/NavigationMenu';
+import { NavigationAuth } from '../Navigation/NavigationAuth/NavigationAuth';
 import styles from '../Navigation/navigation.module.css';
 
 const Navigation = () => {
   return (
     <>
       <nav className={styles.container}>
-        <ul className={styles.list}>
-          <li>
-            <NavLink className={getNavigationClassName} to="/">
-              Phonebook
-            </NavLink>
-          </li>
-          <li>
-            <NavLink className={getNavigationClassName} to="/add">
-              Add contact
-            </NavLink>
-          </li>
-        </ul>
+        <NavigationMenu />
+        <NavigationAuth />
       </nav>
       <Outlet />
     </>

@@ -1,0 +1,27 @@
+.navLinks {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  width: 35px;
+  height: 35px;
+  padding: 5px;
+  margin-right: 10px;
+
+  border: 1px solid var(--button-bg-color);
+  border-radius: 50%;
+  fill: var(--hover-border-color);
+}
+
+.logo:hover {
+  transform: scale(1.02);
+}
+
+.list {
+  display: flex;
+}
+
+.item:not(:last-child) {
+  margin-right: 20px;
+}
