@@ -1,9 +1,12 @@
+import { useDispatch } from 'react-redux';
 import { Notify } from 'notiflix';
 import { useSignUpMutation } from '../../redux/auth/auth-slice';
 import { RegisterForm } from '../../components/RegisterForm/RegisterForm';
+import { setUser } from '../../redux/user/user-actions';
 
 const RegisterPage = () => {
   const [addUser] = useSignUpMutation();
+  const dispatch = useDispatch();
 
   const handleSubmit = async event => {
     event.preventDefault();
@@ -17,6 +20,7 @@ const RegisterPage = () => {
 
     try {
       const payload = await addUser(user);
+      console.log(payload);
       if (payload.error) {
         switch (payload.error.status) {
           case 400:
@@ -30,6 +34,15 @@ const RegisterPage = () => {
         }
       } else {
         Notify.success('Success registration');
+        const { user, token } = payload.data;
+
+        const userLoggedIn = {
+          name: user.name,
+          email: user.email,
+          token: token,
+        };
+
+        dispatch(setUser(userLoggedIn));
       }
     } catch (error) {
       Notify.failure('Unexpected error');

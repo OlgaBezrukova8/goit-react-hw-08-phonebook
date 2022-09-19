@@ -26,7 +26,8 @@ export const UserRoutes = () => {
     >
       <Routes>
         <Route path="/" element={<Navigation />}>
-          <Route index element={<PhonebookPage />} />
+          <Route index element="Welcome" />
+          <Route path="contacts" element={<PhonebookPage />} />
           <Route path="add" element={<ContactsPage />} />
           <Route path="register" element={<RegisterPage />} />
           <Route path="login" element={<LoginPage />} />

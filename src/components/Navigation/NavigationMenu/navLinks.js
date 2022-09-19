@@ -1,7 +1,7 @@
 export const navLinks = [
   {
-    to: '/',
-    name: 'Phonebook',
+    to: '/contacts',
+    name: 'Contacts',
   },
   {
     to: '/add',

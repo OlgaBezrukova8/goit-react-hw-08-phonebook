@@ -4,7 +4,7 @@ import { getFilteredContacts } from '../../../redux/filter/filter-selectors';
 
 export const ContactItem = ({ data }) => {
   const [deleteContact, { isLoading }] = useDeleteContactMutation();
-
+  console.log(data);
   return (
     <>
       {getFilteredContacts(data).map(({ id, name, number }) => (
