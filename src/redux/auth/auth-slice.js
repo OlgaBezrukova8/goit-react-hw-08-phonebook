@@ -1,5 +1,4 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-// import { store } from 'redux/store';
 
 export const authApi = createApi({
   reducerPath: 'auth',
@@ -7,7 +6,9 @@ export const authApi = createApi({
     baseUrl: 'https://connections-api.herokuapp.com/',
     prepareHeaders: (headers, { getState }) => {
       const token = getState().user.token;
+      console.log(token)
       if (token) {
+      
         headers.set('authorization', `Bearer ${token}`);
       }
 
@@ -31,6 +32,10 @@ export const authApi = createApi({
         method: 'POST',
         body: user,
       }),
+      // transformResponse: payload => {
+      //   console.log(payload);
+      //   return payload;
+      // },
       invalidatesTags: ['Authentication'],
     }),
 

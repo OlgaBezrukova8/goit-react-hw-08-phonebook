@@ -1,40 +1,40 @@
-import { Notify } from 'notiflix';
-import { ContactForm } from '../../components/ContactForm/ContactForm';
+// import { Notify } from 'notiflix';
+// import { ContactForm } from '../../components/ContactForm/ContactForm';
 
-import { useAddContactMutation } from '../../redux/contacts/contacts-slice';
-import { useGetContactQuery } from '../../redux/contacts/contacts-slice';
+// import { useAddContactMutation } from '../../redux/contacts/contacts-slice';
+// import { useGetContactQuery } from '../../redux/contacts/contacts-slice';
 
-const ContactsPage = () => {
-  const [addContact] = useAddContactMutation();
-  const { data: contacts } = useGetContactQuery();
+// const ContactsPage = () => {
+//   const [addContact] = useAddContactMutation();
+//   const { data: contacts } = useGetContactQuery();
 
-  const isExists = contactName => {
-    const arrayFilter = contacts.filter(
-      contact => contact.name === contactName
-    );
-    return arrayFilter.length !== 0;
-  };
+//   const isExists = contactName => {
+//     const arrayFilter = contacts.filter(
+//       contact => contact.name === contactName
+//     );
+//     return arrayFilter.length !== 0;
+//   };
 
-  const handleSubmit = async event => {
-    event.preventDefault();
+//   const handleSubmit = async event => {
+//     event.preventDefault();
 
-    const { name, tel } = event.target;
-    const contact = { id: name.value, name: name.value, number: tel.value };
+//     const { name, tel } = event.target;
+//     const contact = { id: name.value, name: name.value, number: tel.value };
 
-    if (isExists(name.value)) {
-      Notify.warning(`${name.value} is already in contacts`);
-      return false;
-    }
-    try {
-     await addContact(contact); 
-      Notify.success('Contact added');
-    } catch (error) {
-      Notify.failure('Error adding contact');
-      console.log(error);
-    }
-  };
+//     if (isExists(name.value)) {
+//       Notify.warning(`${name.value} is already in contacts`);
+//       return false;
+//     }
+//     try {
+//      await addContact(contact); 
+//       Notify.success('Contact added');
+//     } catch (error) {
+//       Notify.failure('Error adding contact');
+//       console.log(error);
+//     }
+//   };
 
-  return <ContactForm onSubmit={handleSubmit} />;
-};
+//   return <ContactForm onSubmit={handleSubmit} />;
+// };
 
-export default ContactsPage;
+// export default ContactsPage;

@@ -1,7 +1,14 @@
 import { useState } from 'react';
+import { Notify } from 'notiflix';
+import {
+  useAddContactMutation,
+  // useGetContactQuery,
+} from '../../redux/contacts/contacts-slice';
 import { Container, Label, Input } from './ContactForm.module';
 
-export const ContactForm = ({ onSubmit }) => {
+export const ContactForm = ({ contacts }) => {
+  const [addContact] = useAddContactMutation();
+
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
 
@@ -10,8 +17,35 @@ export const ContactForm = ({ onSubmit }) => {
     name === 'name' ? setName(value) : setNumber(value);
   };
 
+  const isExists = contactName => {
+    const arrayFilter = contacts.filter(
+      contact => contact.name === contactName
+    );
+    return arrayFilter.length !== 0;
+  };
+
+  const handleSubmit = async event => {
+    event.preventDefault();
+
+    // const { name, tel } = event.target;
+    const contact = { id: name, name: name, number: number };
+
+    if (isExists(name)) {
+      Notify.warning(`${name} is already in contacts`);
+      return false;
+    }
+
+    try {
+      await addContact(contact);
+      Notify.success('Contact added');
+    } catch (error) {
+      Notify.failure('Error adding contact');
+      console.log(error);
+    }
+  };
+
   const handleReset = event => {
-    if (onSubmit(event)) {
+    if (handleSubmit(event)) {
       setName('');
       setNumber('');
     }
