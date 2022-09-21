@@ -1,1 +1,0 @@
-{"version":3,"file":"static/css/412.b29f0efb.chunk.css","mappings":"AAAA,gCACE,YAAa,CACb,6BACF","sources":["pages/PhonebookPage/phonebookPage.module.css"],"sourcesContent":[".container {\n  display: flex;\n  justify-content: space-between;\n}\n"],"names":[],"sourceRoot":""}
