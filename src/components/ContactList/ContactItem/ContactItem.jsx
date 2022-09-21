@@ -1,8 +1,13 @@
-import { Item, Button, Text } from '../ContactList.module';
+import { useDispatch, useSelector } from 'react-redux';
 import { getFilteredContacts } from '../../../redux/filter/filter-selectors';
 import { deleteContact } from '../../../redux/contacts/contacts-operations';
+import { getIsLoading } from '../../../redux/contacts/contacts-selectors';
+import { Item, Button, Text } from '../ContactList.module';
 
 export const ContactItem = ({ data }) => {
+  const dispatch = useDispatch();
+  const isLoading = useSelector(getIsLoading);
+
   return (
     <>
       {getFilteredContacts(data).map(({ id, name, number }) => (
@@ -10,10 +15,12 @@ export const ContactItem = ({ data }) => {
           <Text>
             {name}: {number}
           </Text>
-          {/* {TODO: add disabled={isLoading} to button} */}
-
-          {/* <Button onClick={() => deleteContact(id)} disabled={isLoading}> */}
-          <Button onClick={() => deleteContact(id)}>Delete</Button>
+          <Button
+            onClick={() => dispatch(deleteContact(id))}
+            disabled={isLoading}
+          >
+            Delete
+          </Button>
         </Item>
       ))}
     </>
