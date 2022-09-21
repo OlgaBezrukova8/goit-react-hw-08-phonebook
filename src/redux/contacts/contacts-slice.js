@@ -1,45 +1,52 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { createSlice } from '@reduxjs/toolkit';
+import { getContact, addContact, deleteContact } from './contacts-operations';
 
-export const contactsApi = createApi({
-  reducerPath: 'contacts',
-  baseQuery: fetchBaseQuery({
-    baseUrl: 'https://connections-api.herokuapp.com/',
-    prepareHeaders: (headers, { getState }) => {
-      const token = getState().user.token;
-      console.log(token);
-      if (token) {
-        headers.set('authorization', `Bearer ${token}`);
-      }
+const initialState = {
+  contacts: [],
+  isLoading: false,
+  error: {},
+};
 
-      return headers;
+const contactsSlice = createSlice({
+  name: 'contacts',
+  initialState,
+  extraReducers: {
+    [getContact.pending]: state => {
+      state.isLoading = true;
     },
-  }),
-  tagTypes: ['Contact'],
-  endpoints: builder => ({
-    getContact: builder.query({
-      query: () => 'contacts',
-      providesTags: ['Contact'],
-    }),
-    addContact: builder.mutation({
-      query: content => ({
-        url: 'contacts',
-        method: 'POST',
-        body: content,
-      }),
-      invalidatesTags: ['Contact'],
-    }),
-    deleteContact: builder.mutation({
-      query: id => ({
-        url: `contacts/${id}`,
-        method: 'DELETE',
-      }),
-      invalidatesTags: ['Contact'],
-    }),
-  }),
+    [getContact.fulfilled]: (state, { payload }) => {
+      state.contacts = payload;
+      state.isLoading = false;
+    },
+    [getContact.rejected]: (state, { payload }) => {
+      state.isLoading = false;
+      state.error = payload;
+    },
+
+    [addContact.pending]: state => {
+      state.isLoading = true;
+    },
+    [addContact.fulfilled]: (state, { payload }) => {
+      state.contacts = [...state.contacts, payload];
+      state.isLoading = false;
+    },
+    [addContact.rejected]: (state, { payload }) => {
+      state.isLoading = false;
+      state.error = payload;
+    },
+
+    [deleteContact.pending]: state => {
+      state.isLoading = true;
+    },
+    [deleteContact.fulfilled]: (state, { payload }) => {
+      state.contacts = state.filter(contact => contact.id !== payload);
+      state.isLoading = false;
+    },
+    [deleteContact.rejected]: (state, { payload }) => {
+      state.isLoading = false;
+      state.error = payload;
+    },
+  },
 });
 
-export const {
-  useGetContactQuery,
-  useAddContactMutation,
-  useDeleteContactMutation,
-} = contactsApi;
+export default contactsSlice.reducer;

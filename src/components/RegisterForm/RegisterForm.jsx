@@ -1,34 +1,40 @@
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { signUp } from '../../redux/auth/auth-operations';
 import { Container, Label, Input } from './registerForm.module';
 
-export const RegisterForm = ({ onSubmit }) => {
+export const RegisterForm = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
+  const dispatch = useDispatch();
 
   const handleChange = event => {
     const { name, value } = event.target;
 
     switch (name) {
       case 'name':
-        setName(value);
-        break;
+        return setName(value);
 
       case 'email':
-        setEmail(value);
-        break;
+        return setEmail(value);
 
       case 'password':
-        setPassword(value);
-        break;
+        return setPassword(value);
 
       default:
-        break;
+        return;
     }
   };
 
+  const handleSubmit = event => {
+    event.preventDefault();
+    dispatch(signUp({ name, email, password }));
+  };
+
   const handleReset = event => {
-    if (onSubmit(event)) {
+    if (handleSubmit(event)) {
       setName('');
       setEmail('');
       setPassword('');

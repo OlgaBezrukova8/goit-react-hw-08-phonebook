@@ -4,6 +4,7 @@ import { Route, Routes, Navigate } from 'react-router-dom';
 import { Loader } from '../Loader/Loader';
 
 const Navigation = lazy(() => import('../Navigation/Navigation'));
+const WelcomePage = lazy(() => import('../../pages/WelcomePage/WelcomePage'));
 const PhonebookPage = lazy(() =>
   import('../../pages/PhonebookPage/PhonebookPage')
 );
@@ -23,7 +24,7 @@ export const UserRoutes = () => {
     >
       <Routes>
         <Route path="/" element={<Navigation />}>
-          <Route index element="Welcome" />
+          <Route index element={<WelcomePage />} />
           <Route path="contacts" element={<PhonebookPage />} />
           <Route path="register" element={<RegisterPage />} />
           <Route path="login" element={<LoginPage />} />

@@ -1,14 +1,14 @@
 import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { UserMenu } from '../../UserMenu/UserMenu';
-import { getUser } from '../../../redux/user/user-selectors';
+import { getToken } from '../../../redux/auth/auth-selectors';
 
 export const NavigationAuth = () => {
-  const user = useSelector(getUser);
+  const token = useSelector(getToken);
 
   return (
     <div>
-      {user.token ? (
+      {token ? (
         <UserMenu />
       ) : (
         <>

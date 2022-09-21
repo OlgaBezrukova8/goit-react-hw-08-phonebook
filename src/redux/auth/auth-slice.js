@@ -1,63 +1,76 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { createSlice } from '@reduxjs/toolkit';
+import { logIn, logOut, signUp, getCurrentUser } from './auth-operations';
 
-export const authApi = createApi({
-  reducerPath: 'auth',
-  baseQuery: fetchBaseQuery({
-    baseUrl: 'https://connections-api.herokuapp.com/',
-    prepareHeaders: (headers, { getState }) => {
-      const token = getState().user.token;
-      console.log(token)
-      if (token) {
-      
-        headers.set('authorization', `Bearer ${token}`);
-      }
+const initialState = {
+  user: { email: '', name: '' },
+  token: '',
+  isLoading: false,
+  isLoggedIn: false,
+  error: '',
+};
 
-      return headers;
+const authSlice = createSlice({
+  name: 'auth',
+  initialState,
+  extraReducers: {
+    [signUp.pending]: state => {
+      state.isLoading = true;
+      state.isLoggedIn = false;
     },
-  }),
-  tagTypes: ['Authentication'],
-  endpoints: builder => ({
-    signUp: builder.mutation({
-      query: user => ({
-        url: '/users/signup',
-        method: 'POST',
-        body: user,
-      }),
-      invalidatesTags: ['Authentication'],
-    }),
+    [signUp.fulfilled]: (state, { payload }) => {
+      state.user = payload.user;
+      state.token = payload.token;
+      state.isLoading = false;
+      state.isLoggedIn = true;
+    },
+    [signUp.rejected]: (state, { payload }) => {
+      state.isLoading = false;
+      state.isLoggedIn = false;
+      state.error = payload.message;
+    },
 
-    logIn: builder.mutation({
-      query: user => ({
-        url: '/users/login',
-        method: 'POST',
-        body: user,
-      }),
-      // transformResponse: payload => {
-      //   console.log(payload);
-      //   return payload;
-      // },
-      invalidatesTags: ['Authentication'],
-    }),
+    [logIn.pending]: state => {
+      state.isLoading = true;
+    },
+    [logIn.fulfilled]: (state, { payload }) => {
+      state.user = payload.user;
+      state.isLoading = false;
+      state.isLoggedIn = true;
+      state.token = payload.token;
+    },
+    [logIn.rejected]: (state, payload) => {
+      state.isLoading = false;
+      state.isLoggedIn = false;
+      state.error = payload;
+    },
 
-    logOut: builder.mutation({
-      query: user => ({
-        url: '/users/logout',
-        method: 'POST',
-        body: user,
-      }),
-      invalidatesTags: ['Authentication'],
-    }),
+    [logOut.pending]: state => {
+      state.isLoading = true;
+      state.isLoggedIn = false;
+    },
+    [logOut.fulfilled]: state => {
+      state.isLoading = false;
+      state.token = '';
+    },
+    [logOut.rejected]: (state, { payload }) => {
+      state.isLoading = false;
+      state.isLoggedIn = false;
+      state.error = payload.message;
+    },
 
-    getCurrentUser: builder.query({
-      query: () => '/users/current',
-      invalidatesTags: ['Authentication'],
-    }),
-  }),
+    [getCurrentUser.pending]: state => {
+      state.isLoading = true;
+    },
+    [getCurrentUser.fulfilled]: (state, { payload }) => {
+      state.user = payload;
+      state.isLoading = false;
+    },
+    [getCurrentUser.rejected]: (state, { payload }) => {
+      state.isLoading = false;
+      state.error = payload;
+      state.token = '';
+    },
+  },
 });
 
-export const {
-  useSignUpMutation,
-  useLogInMutation,
-  useLogOutMutation,
-  useGetCurrentUserQuery,
-} = authApi;
+export default authSlice.reducer;

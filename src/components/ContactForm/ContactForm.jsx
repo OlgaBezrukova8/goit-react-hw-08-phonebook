@@ -1,16 +1,17 @@
 import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Notify } from 'notiflix';
-import {
-  useAddContactMutation,
-  // useGetContactQuery,
-} from '../../redux/contacts/contacts-slice';
+
+import { addContact } from '../../redux/contacts/contacts-operations';
+import { getContact } from '../../redux/contacts/contacts-selectors';
 import { Container, Label, Input } from './ContactForm.module';
 
-export const ContactForm = ({ contacts }) => {
-  const [addContact] = useAddContactMutation();
-
+export const ContactForm = () => {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
+
+  const dispatch = useDispatch();
+  const contacts = useSelector(getContact);
 
   const handleChange = event => {
     const { name, value } = event.target;
@@ -24,24 +25,16 @@ export const ContactForm = ({ contacts }) => {
     return arrayFilter.length !== 0;
   };
 
-  const handleSubmit = async event => {
+  const handleSubmit = event => {
     event.preventDefault();
-
-    // const { name, tel } = event.target;
-    const contact = { id: name, name: name, number: number };
 
     if (isExists(name)) {
       Notify.warning(`${name} is already in contacts`);
       return false;
     }
 
-    try {
-      await addContact(contact);
-      Notify.success('Contact added');
-    } catch (error) {
-      Notify.failure('Error adding contact');
-      console.log(error);
-    }
+    dispatch(addContact({ name, number }));
+    return true;
   };
 
   const handleReset = event => {

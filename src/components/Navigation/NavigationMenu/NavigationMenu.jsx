@@ -3,11 +3,11 @@ import { useSelector } from 'react-redux';
 import { AiOutlineQq } from 'react-icons/ai';
 import { getNavigationClassName } from '../../../shared/getNavigationClassName';
 import { navLinks } from './navLinks';
-import { getUser } from '../../../redux/user/user-selectors';
+import { getToken } from '../../../redux/auth/auth-selectors';
 import styles from '../NavigationMenu/navigationMenu.module.css';
 
 export const NavigationMenu = () => {
-  const user = useSelector(getUser);
+  const token = useSelector(getToken);
 
   const links = navLinks.map(({ to, name }) => (
     <li className={styles.item} key={name}>
@@ -24,7 +24,7 @@ export const NavigationMenu = () => {
       </Link>
       <Link to="/">Phonebook</Link>
 
-      {user.token && <ul className={styles.list}>{links}</ul>}
+      {token && <ul className={styles.list}>{links}</ul>}
     </div>
   );
 };

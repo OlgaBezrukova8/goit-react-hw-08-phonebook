@@ -7,11 +7,11 @@ import {
   getFilteredContacts,
   getFilter,
 } from '../../redux/filter/filter-selectors';
-// import { useGetContactQuery } from '../../redux/contacts/contacts-slice';
+import { getContact } from '../../redux/contacts/contacts-selectors';
 
-export const ContactList = ({ contacts }) => {
-  // const { data, error, isFetching } = useGetContactQuery();
+export const ContactList = () => {
   const filter = useSelector(getFilter);
+  const contacts = useSelector(getContact);
 
   return (
     <Container>

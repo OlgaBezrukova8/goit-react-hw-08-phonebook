@@ -1,30 +1,21 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { Navigate } from 'react-router-dom';
-import { useLogOutMutation } from '../../redux/auth/auth-slice';
-import { resetUser } from '../../redux/user/user-actions';
-import { getUser } from '../../redux/user/user-selectors';
+import { getEmail } from '../../redux/auth/auth-selectors';
+import { logOut } from '../../redux/auth/auth-operations';
+import { getToken } from '../../redux/auth/auth-selectors';
 
 export const UserMenu = () => {
-  const [logOut] = useLogOutMutation();
   const dispatch = useDispatch();
-  const user = useSelector(getUser);
-
-  const handleSubmit = async () => {
-    try {
-      await logOut();
-      dispatch(resetUser());
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  const email = useSelector(getEmail);
+  const token = useSelector(getToken);
 
   return (
     <>
-      {user.token === '' && <Navigate to="/" replace={true} />}
       <div>
-        <span>{user.name[0]}</span>
-        <p>{user.email}</p>
-        <button onClick={handleSubmit}>Log out</button>
+        <span>{email[0]}</span>
+        <p>{email}</p>
+        <button type="button" onClick={() => dispatch(logOut(token))}>
+          Log out
+        </button>
       </div>
     </>
   );
