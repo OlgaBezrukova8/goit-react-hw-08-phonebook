@@ -1,19 +1,23 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { Navigate } from 'react-router-dom';
 
-import { getFilter } from '../../redux/filter/filter-selectors';
-import { setFilter } from '../../redux/filter/filter-actions';
+import { getFilter } from 'redux/filter/filter-selectors';
+import { setFilter } from 'redux/filter/filter-actions';
 
-// import { Loader } from '../../components/Loader/Loader';
-import { Filter } from '../../components/Filter/Filter';
-import { ContactList } from '../../components/ContactList/ContactList';
-import { ContactForm } from '../../components/ContactForm/ContactForm';
-import { getToken } from '../../redux/auth/auth-selectors';
+import { Loader } from 'components/Loader/Loader';
+import { Filter } from 'components/Filter/Filter';
+import { ContactList } from 'components/ContactList/ContactList';
+import { ContactForm } from 'components/ContactForm/ContactForm';
+
+import { useAuth } from 'shared/hooks/useAuth';
+import { useContacts } from 'shared/hooks/useContacts';
+
 import styles from './phonebookPage.module.css';
 
 const PhonebookPage = () => {
   const filter = useSelector(getFilter);
-  const token = useSelector(getToken);
+  const isLoggedIn = useAuth();
+  const isLoading = useContacts();
   const dispatch = useDispatch();
 
   const onSetFilter = ({ target }) => {
@@ -22,8 +26,8 @@ const PhonebookPage = () => {
 
   return (
     <div className={styles.container}>
-      {/* TODO: add loader to contact list*/}
-      {!token ? (
+      {isLoading && <Loader />}
+      {!isLoggedIn ? (
         <Navigate to="/" />
       ) : (
         <>
@@ -36,12 +40,6 @@ const PhonebookPage = () => {
           </div>
         </>
       )}
-      {/* {error && <p>{error.message}</p>}
-      {isFetching ? (
-        <Loader />
-      ) : ( */}
-
-      {/* )} */}
     </div>
   );
 };

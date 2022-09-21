@@ -1,13 +1,15 @@
 import { Link, NavLink } from 'react-router-dom';
-import { useSelector } from 'react-redux';
 import { AiOutlineQq } from 'react-icons/ai';
-import { getNavigationClassName } from '../../../shared/getNavigationClassName';
+
+import { getNavigationClassName } from 'shared/getNavigationClassName';
+import { useToken } from 'shared/hooks/useToken';
+
 import { navLinks } from './navLinks';
-import { getToken } from '../../../redux/auth/auth-selectors';
+
 import styles from '../NavigationMenu/navigationMenu.module.css';
 
 export const NavigationMenu = () => {
-  const token = useSelector(getToken);
+  const token = useToken();
 
   const links = navLinks.map(({ to, name }) => (
     <li className={styles.item} key={name}>

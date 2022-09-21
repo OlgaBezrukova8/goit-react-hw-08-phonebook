@@ -1,12 +1,12 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { getEmail } from '../../redux/auth/auth-selectors';
-import { logOut } from '../../redux/auth/auth-operations';
-import { getToken } from '../../redux/auth/auth-selectors';
+import { getEmail } from 'redux/auth/auth-selectors';
+import { logOut } from 'redux/auth/auth-operations';
+import { useToken } from 'shared/hooks/useToken';
 
 export const UserMenu = () => {
   const dispatch = useDispatch();
   const email = useSelector(getEmail);
-  const token = useSelector(getToken);
+  const token = useToken();
 
   return (
     <>

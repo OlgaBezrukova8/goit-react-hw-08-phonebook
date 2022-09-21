@@ -2,11 +2,9 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Notify } from 'notiflix';
 
-import { addContact } from '../../redux/contacts/contacts-operations';
-import {
-  getContact,
-  getIsLoading,
-} from '../../redux/contacts/contacts-selectors';
+import { addContact } from 'redux/contacts/contacts-operations';
+import { getContact } from 'redux/contacts/contacts-selectors';
+import { useContacts } from 'shared/hooks/useContacts';
 import { Container, Label, Input } from './ContactForm.module';
 
 export const ContactForm = () => {
@@ -15,7 +13,7 @@ export const ContactForm = () => {
 
   const dispatch = useDispatch();
   const contacts = useSelector(getContact);
-  const isLoading = useSelector(getIsLoading);
+  const isLoading = useContacts();
 
   const handleChange = event => {
     const { name, value } = event.target;

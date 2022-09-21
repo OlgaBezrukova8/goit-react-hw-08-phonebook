@@ -60,8 +60,9 @@ export const logOut = createAsyncThunk(
 
 export const getCurrentUser = createAsyncThunk(
   'users/current',
-  async (_, { rejectWithValue }) => {
+  async (userToken, { rejectWithValue }) => {
     try {
+      token.set(userToken);
       const { data } = await axios.get('users/current');
       return data;
     } catch (error) {

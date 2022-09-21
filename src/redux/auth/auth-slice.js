@@ -64,9 +64,11 @@ const authSlice = createSlice({
     [getCurrentUser.fulfilled]: (state, { payload }) => {
       state.user = payload;
       state.isLoading = false;
+      state.isLoggedIn = true;
     },
     [getCurrentUser.rejected]: (state, { payload }) => {
       state.isLoading = false;
+      state.isLoggedIn = false;
       state.error = payload;
       state.token = '';
     },

@@ -1,18 +1,18 @@
 import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
-import { getToken } from '../redux/auth/auth-selectors';
-import { getCurrentUser } from '../redux/auth/auth-operations';
-import { getContact } from '../redux/contacts/contacts-operations';
-import { UserRoutes } from '../components/UserRoutes/UserRoutes';
+import { useToken } from 'shared/hooks/useToken';
+import { getCurrentUser } from 'redux/auth/auth-operations';
+import { getContact } from 'redux/contacts/contacts-operations';
+import { UserRoutes } from './UserRoutes/UserRoutes';
 
 export const App = () => {
   const dispatch = useDispatch();
-  const token = useSelector(getToken);
+  const token = useToken();
 
   useEffect(() => {
     if (token !== '') {
-      dispatch(getCurrentUser());
+      dispatch(getCurrentUser(token));
       dispatch(getContact());
     }
   }, [dispatch, token]);

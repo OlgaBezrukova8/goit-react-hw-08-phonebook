@@ -1,10 +1,9 @@
-import { useSelector } from 'react-redux';
 import { Navigate } from 'react-router-dom';
-import { getLoggedIn } from '../../redux/auth/auth-selectors';
 import { RegisterForm } from '../../components/RegisterForm/RegisterForm';
+import { useAuth } from 'shared/hooks/useAuth';
 
 const RegisterPage = () => {
-  const isLoggedIn = useSelector(getLoggedIn);
+  const isLoggedIn = useAuth();
 
   return <>{isLoggedIn ? <Navigate to="/contacts" /> : <RegisterForm />}</>;
 };

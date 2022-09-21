@@ -1,10 +1,9 @@
 import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import { WelcomeContainer } from '../../components/WelcomeContainer/WelcomeContainer';
-import { getLoggedIn } from '../../redux/auth/auth-selectors';
+import { WelcomeContainer } from 'components/WelcomeContainer/WelcomeContainer';
+import { useAuth } from 'shared/hooks/useAuth';
 
 const WelcomePage = () => {
-  const isLoggedIn = useSelector(getLoggedIn);
+  const isLoggedIn = useAuth();
 
   return (
     <>
