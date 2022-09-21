@@ -73,7 +73,7 @@ export const RegisterForm = () => {
           <Input
             value={password}
             onChange={handleChange}
-            type="text"
+            type="password"
             name="password"
             placeholder="Enter user password"
             required
