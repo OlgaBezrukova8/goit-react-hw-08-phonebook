@@ -26,17 +26,17 @@ export const UserRoutes = () => {
     >
       <Routes>
         <Route path="/" element={<Navigation />}>
-          <Route index element={<WelcomePage />} />
-          <Route exact path="/" element={<PublicRoute restricted />}>
+          <Route path="/" element={<WelcomePage />} />
+          <Route element={<PublicRoute />}>
             <Route path="/register" element={<RegisterPage />} />
-          </Route>
-          <Route exact path="/" element={<PublicRoute restricted />}>
             <Route path="/login" element={<LoginPage />} />
           </Route>
-          <Route exact path="/" element={<PrivateRoute />}>
+
+          <Route element={<PrivateRoute />}>
             <Route exact path="/contacts" element={<PhonebookPage />} />
           </Route>
         </Route>
+
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </Suspense>
