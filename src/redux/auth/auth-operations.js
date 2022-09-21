@@ -38,7 +38,7 @@ export const logIn = createAsyncThunk(
       return data;
     } catch (error) {
       return rejectWithValue(
-        Notify.success(`Can't login user: ${error.message}`)
+        Notify.failure(`Can't login user: ${error.message}`)
       );
     }
   }
@@ -50,10 +50,12 @@ export const logOut = createAsyncThunk(
     try {
       const { data } = await axios.post('users/logout', user);
       token.unset();
-
+      Notify.success('Logged out successfully');
       return data;
     } catch (error) {
-      return rejectWithValue(error.message);
+      return rejectWithValue(
+        Notify.failure(`Can't log out user: ${error.message}`)
+      );
     }
   }
 );
