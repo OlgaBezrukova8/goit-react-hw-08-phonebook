@@ -5,8 +5,6 @@ import PropTypes from 'prop-types';
 import { Form } from 'react-bootstrap';
 
 import { signUp } from 'redux/auth/auth-operations';
-// import { Container, Label, Input } from './registerForm.module';
-
 import { BasicButton } from 'components/BasicButton/BasicButton';
 
 export const RegisterForm = () => {

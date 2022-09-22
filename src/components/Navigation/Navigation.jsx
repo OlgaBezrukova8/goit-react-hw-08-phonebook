@@ -7,7 +7,7 @@ import { Navbar } from 'react-bootstrap';
 const Navigation = () => {
   return (
     <>
-      <Navbar>
+      <Navbar className="bg-light">
         <NavigationMenu />
         <Navbar.Collapse className="justify-content-end d-flex">
           <NavigationAuth />

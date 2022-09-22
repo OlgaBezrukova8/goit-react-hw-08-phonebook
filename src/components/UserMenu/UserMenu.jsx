@@ -11,18 +11,18 @@ export const UserMenu = () => {
   const token = useToken();
 
   return (
-    <>
+    <div className="d-flex align-items-center">
       <div className="d-flex align-items-center">
-        <div className="d-flex align-items-center">
-          <span>{email[0]}</span>
-          <p>{email}</p>
-        </div>
-        <div>
-          <BasicButton type="button" onClick={() => dispatch(logOut(token))}>
-            Log out
-          </BasicButton>
-        </div>
+        <span className="py-2 px-3 bg-primary square rounded-circle text-white">
+          {email[0]}
+        </span>
+        <p>{email}</p>
       </div>
-    </>
+      <div>
+        <BasicButton type="button" onClick={() => dispatch(logOut(token))}>
+          Log out
+        </BasicButton>
+      </div>
+    </div>
   );
 };

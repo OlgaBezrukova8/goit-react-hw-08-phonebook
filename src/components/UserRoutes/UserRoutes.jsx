@@ -27,6 +27,7 @@ export const UserRoutes = () => {
       <Routes>
         <Route path="/" element={<Navigation />}>
           <Route path="/" element={<WelcomePage />} />
+
           <Route element={<PublicRoute />}>
             <Route path="/register" element={<RegisterPage />} />
             <Route path="/login" element={<LoginPage />} />
@@ -35,9 +36,9 @@ export const UserRoutes = () => {
           <Route element={<PrivateRoute />}>
             <Route exact path="/contacts" element={<PhonebookPage />} />
           </Route>
-        </Route>
 
-        <Route path="*" element={<Navigate to="/" />} />
+          <Route path="*" element={<Navigate to="/" />} />
+        </Route>
       </Routes>
     </Suspense>
   );
