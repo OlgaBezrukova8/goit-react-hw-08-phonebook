@@ -1,6 +1,5 @@
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { BrowserRouter } from 'react-router-dom';
 
 import { useToken } from 'shared/hooks/useToken';
 import { getCurrentUser } from 'redux/auth/auth-operations';
@@ -20,9 +19,5 @@ export const App = () => {
     }
   }, [dispatch, token]);
 
-  return (
-    <BrowserRouter basename="/goit-react-hw-08-phonebook/">
-      <UserRoutes />
-    </BrowserRouter>
-  );
+  return <UserRoutes />;
 };
