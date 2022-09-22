@@ -4,7 +4,8 @@ import PropTypes from 'prop-types';
 
 import { logIn } from 'redux/auth/auth-operations';
 
-import { Container, Label, Input } from './loginForm.module';
+import { BasicButton } from 'components/BasicButton/BasicButton';
+import { Form, Row, Col } from 'react-bootstrap';
 
 export const LoginForm = () => {
   const [email, setEmail] = useState('');
@@ -26,35 +27,48 @@ export const LoginForm = () => {
   };
 
   return (
-    <Container>
-      <form onSubmit={handleSubmit}>
-        <Label>
-          Email
-          <Input
-            value={email}
-            onChange={handleChange}
-            type="email"
-            name="email"
-            placeholder="Enter user email"
-            required
-          />
-        </Label>
+    <Form onSubmit={handleSubmit} className="mb-3 mt-3">
+      <Row>
+        <Col md>
+          <Form.Group className="mb-3" controlId="formBasicEmail">
+            <Form.Label>Email</Form.Label>
+            <Form.Control
+              type="email"
+              name="email"
+              placeholder="Enter user email"
+              onChange={handleChange}
+              value={email}
+              required
+            />
+            <Form.Text className="text-muted">
+              We'll never share your email with anyone else.
+            </Form.Text>
+          </Form.Group>
+        </Col>
 
-        <Label>
-          Password
-          <Input
-            value={password}
-            onChange={handleChange}
-            type="text"
-            name="password"
-            placeholder="Enter user password"
-            required
-          />
-        </Label>
-
-        <button type="submit">Login</button>
-      </form>
-    </Container>
+        <Col md>
+          <Form.Group className="mb-3" controlId="formBasicPassword">
+            <Form.Label>Password</Form.Label>
+            <Form.Control
+              type="password"
+              name="password"
+              placeholder="Enter user password"
+              onChange={handleChange}
+              value={password}
+              required
+            />
+            <Form.Text className="text-muted">
+              We'll never share your password with anyone else.
+            </Form.Text>
+          </Form.Group>
+        </Col>
+      </Row>
+      <div className="d-grid">
+        <BasicButton className="mt-1" size="md" type="submit">
+          Login
+        </BasicButton>
+      </div>
+    </Form>
   );
 };
 

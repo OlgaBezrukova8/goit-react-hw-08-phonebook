@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { WelcomeContainer } from 'components/WelcomeContainer/WelcomeContainer';
 import { useAuth } from 'shared/hooks/useAuth';
+import { LoginForm } from 'components/LoginForm/LoginForm';
 
 const WelcomePage = () => {
   const isLoggedIn = useAuth();
@@ -21,6 +22,7 @@ const WelcomePage = () => {
             header="Welcome to the phone  book :)"
             text="Here you can store all the contacts you need to keep in touch. You can also easily update or delete contacts that are out of date."
           />
+          <LoginForm />
           <div>
             <p>If you're not already registered, go to</p>
             <Link to="/register">Register now</Link>

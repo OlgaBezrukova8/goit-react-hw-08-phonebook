@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import { updateContact } from 'redux/contacts/contacts-operations';
 
 import { Container, Label, Input } from '../LoginForm/loginForm.module';
+import { BasicButton } from '../BasicButton/BasicButton';
 
 export const ContactUpdateForm = ({ contact, hideModal }) => {
   const [name, setName] = useState(contact.name);
@@ -58,12 +59,20 @@ export const ContactUpdateForm = ({ contact, hideModal }) => {
           />
         </Label>
 
-        <button type="submit" onClick={() => onUpdateContact}>
+        <BasicButton
+          variant="outline-success"
+          type="submit"
+          onClick={() => onUpdateContact}
+        >
           Update
-        </button>
-        <button type="submit" onClick={() => hideModal()}>
+        </BasicButton>
+        <BasicButton
+          variant="outline-warning"
+          type="submit"
+          onClick={() => hideModal()}
+        >
           Cancel
-        </button>
+        </BasicButton>
       </form>
     </Container>
   );

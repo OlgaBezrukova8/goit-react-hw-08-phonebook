@@ -1,13 +1,18 @@
-import { Label, Input, Container } from './Filter.module';
 import PropTypes from 'prop-types';
+import Form from 'react-bootstrap/Form';
 
 export const Filter = ({ value, onChange }) => (
-  <Container>
-    <Label>
-      Find contacts by name
-      <Input type="text" value={value} onChange={onChange} />
-    </Label>
-  </Container>
+  <Form>
+    <Form.Group className="mb-3" controlId="formBasicFilter">
+      <Form.Label> Find contacts by name</Form.Label>
+      <Form.Control
+        type="text"
+        placeholder="..."
+        value={value}
+        onChange={onChange}
+      />
+    </Form.Group>
+  </Form>
 );
 
 Filter.propTypes = {

@@ -3,8 +3,11 @@ import { useDispatch } from 'react-redux';
 import { getFilteredContacts } from 'redux/filter/filter-selectors';
 import { deleteContact } from 'redux/contacts/contacts-operations';
 import { useContacts } from 'shared/hooks/useContacts';
-import { Item, Button, Text } from '../ContactList.module';
+
 import { ContactModal } from 'components/ContactModal/ContactModal';
+import { BasicButton } from 'components/BasicButton/BasicButton';
+
+import ListGroup from 'react-bootstrap/ListGroup';
 
 export const ContactItem = ({ data }) => {
   const [contact, setContact] = useState(null);
@@ -21,17 +24,12 @@ export const ContactItem = ({ data }) => {
         hideModal={() => setShowModal(false)}
       />
       {getFilteredContacts(data).map(({ id, name, number }) => (
-        <Item key={id}>
-          <Text>
+        <ListGroup.Item className="d-flex p-2 align-items-center" key={id}>
+          <p>
             {name}: {number}
-          </Text>
-          <Button
-            onClick={() => dispatch(deleteContact(id))}
-            disabled={isLoading}
-          >
-            Delete
-          </Button>
-          <Button
+          </p>
+
+          <BasicButton
             onClick={() => {
               setContact({ id, name, number });
               setShowModal(true);
@@ -39,8 +37,15 @@ export const ContactItem = ({ data }) => {
             disabled={isLoading}
           >
             Update
-          </Button>
-        </Item>
+          </BasicButton>
+
+          <BasicButton
+            onClick={() => dispatch(deleteContact(id))}
+            disabled={isLoading}
+          >
+            Delete
+          </BasicButton>
+        </ListGroup.Item>
       ))}
     </>
   );

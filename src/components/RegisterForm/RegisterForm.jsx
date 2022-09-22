@@ -1,9 +1,13 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
+
 import PropTypes from 'prop-types';
+import { Form } from 'react-bootstrap';
 
 import { signUp } from 'redux/auth/auth-operations';
-import { Container, Label, Input } from './registerForm.module';
+// import { Container, Label, Input } from './registerForm.module';
+
+import { BasicButton } from 'components/BasicButton/BasicButton';
 
 export const RegisterForm = () => {
   const [name, setName] = useState('');
@@ -44,47 +48,54 @@ export const RegisterForm = () => {
   };
 
   return (
-    <Container>
-      <form onSubmit={handleReset}>
-        <Label>
-          Name
-          <Input
-            value={name}
-            onChange={handleChange}
-            type="text"
-            name="name"
-            placeholder="Enter user name"
-            required
-          />
-        </Label>
+    <Form onSubmit={handleReset} className=" mt-3">
+      <Form.Group className="col-md-6 mb-3 mx-auto" controlId="formBasicName">
+        <Form.Label>Name</Form.Label>
+        <Form.Control
+          type="text"
+          name="name"
+          placeholder="Enter user name"
+          onChange={handleChange}
+          value={name}
+          required
+        />
+      </Form.Group>
 
-        <Label>
-          Email
-          <Input
-            value={email}
-            onChange={handleChange}
-            type="email"
-            name="email"
-            placeholder="Enter user email"
-            required
-          />
-        </Label>
+      <Form.Group className="col-md-6 mb-3 mx-auto" controlId="formBasicEmail">
+        <Form.Label>Email</Form.Label>
+        <Form.Control
+          type="email"
+          name="email"
+          placeholder="Enter user email"
+          onChange={handleChange}
+          value={email}
+          required
+        />
+        <Form.Text className="text-muted">
+          We'll never share your email with anyone else.
+        </Form.Text>
+      </Form.Group>
 
-        <Label>
-          Password
-          <Input
-            value={password}
-            onChange={handleChange}
-            type="password"
-            name="password"
-            placeholder="Enter user password"
-            required
-          />
-        </Label>
+      <Form.Group
+        className="col-md-6 mb-3 mx-auto"
+        controlId="formBasicPassword"
+      >
+        <Form.Label>Password</Form.Label>
+        <Form.Control
+          type="password"
+          name="password"
+          placeholder="Enter user password"
+          onChange={handleChange}
+          value={password}
+          required
+        />
+        <Form.Text className="text-muted">
+          We'll never share your password with anyone else.
+        </Form.Text>
+      </Form.Group>
 
-        <button type="submit">Sign up</button>
-      </form>
-    </Container>
+      <BasicButton type="submit">Sign up</BasicButton>
+    </Form>
   );
 };
 

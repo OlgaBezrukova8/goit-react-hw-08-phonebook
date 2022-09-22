@@ -28,7 +28,11 @@ code {
     monospace;
 }
 
-button {
+p {
+  margin: 0;
+}
+
+/* button {
   cursor: pointer;
   padding: 8px 18px;
 
@@ -41,7 +45,7 @@ button:hover,
 button:focus {
   transform: scale(1.02);
   background-color: var(--accent-color);
-}
+} */
 
 ul {
   list-style: none;

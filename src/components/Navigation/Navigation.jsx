@@ -1,15 +1,18 @@
 import { Outlet } from 'react-router-dom';
 import { NavigationMenu } from '../Navigation/NavigationMenu/NavigationMenu';
 import { NavigationAuth } from '../Navigation/NavigationAuth/NavigationAuth';
-import styles from '../Navigation/navigation.module.css';
+
+import { Navbar } from 'react-bootstrap';
 
 const Navigation = () => {
   return (
     <>
-      <nav className={styles.container}>
+      <Navbar>
         <NavigationMenu />
-        <NavigationAuth />
-      </nav>
+        <Navbar.Collapse className="justify-content-end d-flex">
+          <NavigationAuth />
+        </Navbar.Collapse>
+      </Navbar>
       <Outlet />
     </>
   );
