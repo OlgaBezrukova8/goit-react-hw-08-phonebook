@@ -21,7 +21,7 @@ export const App = () => {
   }, [dispatch, token]);
 
   return (
-    <BrowserRouter basename="/goit-react-hw-08-phonebook">
+    <BrowserRouter basename="/goit-react-hw-08-phonebook/">
       <UserRoutes />
     </BrowserRouter>
   );
