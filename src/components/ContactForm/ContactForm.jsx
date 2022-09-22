@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Notify } from 'notiflix';
+import PropTypes from 'prop-types';
 
 import { addContact } from 'redux/contacts/contacts-operations';
 import { getContact } from 'redux/contacts/contacts-selectors';
@@ -81,4 +82,11 @@ export const ContactForm = () => {
       </form>
     </Container>
   );
+};
+
+ContactForm.propTypes = {
+  value: PropTypes.string,
+  onSubmit: PropTypes.func,
+  onChange: PropTypes.func,
+  disabled: PropTypes.bool,
 };

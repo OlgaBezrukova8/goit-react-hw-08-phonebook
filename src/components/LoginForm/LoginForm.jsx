@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { logIn } from '../../redux/auth/auth-operations';
+import PropTypes from 'prop-types';
+
+import { logIn } from 'redux/auth/auth-operations';
 
 import { Container, Label, Input } from './loginForm.module';
 
@@ -54,4 +56,10 @@ export const LoginForm = () => {
       </form>
     </Container>
   );
+};
+
+LoginForm.propTypes = {
+  value: PropTypes.string,
+  onSubmit: PropTypes.func,
+  onChange: PropTypes.func,
 };

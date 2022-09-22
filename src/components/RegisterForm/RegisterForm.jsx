@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { signUp } from '../../redux/auth/auth-operations';
+import PropTypes from 'prop-types';
+
+import { signUp } from 'redux/auth/auth-operations';
 import { Container, Label, Input } from './registerForm.module';
 
 export const RegisterForm = () => {
@@ -84,4 +86,10 @@ export const RegisterForm = () => {
       </form>
     </Container>
   );
+};
+
+RegisterForm.propTypes = {
+  value: PropTypes.string,
+  onSubmit: PropTypes.func,
+  onChange: PropTypes.func,
 };

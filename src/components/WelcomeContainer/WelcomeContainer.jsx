@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 export const WelcomeContainer = ({ header, text }) => {
   return (
     <div>
@@ -5,4 +7,9 @@ export const WelcomeContainer = ({ header, text }) => {
       <p>{text}</p>
     </div>
   );
+};
+
+WelcomeContainer.propTypes = {
+  header: PropTypes.string.isRequired,
+  text: PropTypes.string.isRequired,
 };

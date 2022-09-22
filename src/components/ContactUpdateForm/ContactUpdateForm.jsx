@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import PropTypes from 'prop-types';
+
 import { updateContact } from 'redux/contacts/contacts-operations';
 
 import { Container, Label, Input } from '../LoginForm/loginForm.module';
@@ -65,4 +67,12 @@ export const ContactUpdateForm = ({ contact, hideModal }) => {
       </form>
     </Container>
   );
+};
+
+ContactUpdateForm.propTypes = {
+  value: PropTypes.string,
+  onSubmit: PropTypes.func,
+  onChange: PropTypes.func,
+  onClick: PropTypes.func,
+  disabled: PropTypes.bool,
 };

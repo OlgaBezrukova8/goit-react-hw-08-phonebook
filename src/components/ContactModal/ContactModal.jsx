@@ -23,6 +23,7 @@ export const ContactModal = ({ showModal, contact, hideModal }) => {
 };
 
 ContactModal.propTypes = {
-  // contact
+  contacts: PropTypes.array,
+  showModal: PropTypes.bool.isRequired,
   hideModal: PropTypes.func.isRequired,
 };
