@@ -38,7 +38,7 @@ export const logIn = createAsyncThunk(
       return data;
     } catch (error) {
       return rejectWithValue(
-        Notify.failure(`Can't login user: ${error.message}`)
+        Notify.failure("Can't log in or user does not exist")
       );
     }
   }
