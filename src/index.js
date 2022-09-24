@@ -7,7 +7,7 @@ import { PersistGate } from 'redux-persist/integration/react';
 import { App } from 'components/App';
 import { persistor, store } from './redux/store';
 
-import Container from 'react-bootstrap/Container';
+import ThemeProvider from 'react-bootstrap/ThemeProvider';
 
 import './index.css';
 
@@ -16,9 +16,12 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <BrowserRouter basename="/goit-react-hw-08-phonebook/">
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
-          <Container>
+          <ThemeProvider
+            breakpoints={['xxxl', 'xxl', 'xl', 'lg', 'md', 'sm', 'xs', 'xxs']}
+            minBreakpoint="xxs"
+          >
             <App />
-          </Container>
+          </ThemeProvider>
         </PersistGate>
       </Provider>
     </BrowserRouter>

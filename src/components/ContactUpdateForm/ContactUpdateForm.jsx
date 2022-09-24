@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 
 import { updateContact } from 'redux/contacts/contacts-operations';
 
-import { Container, Label, Input } from '../LoginForm/loginForm.module';
 import { BasicButton } from '../BasicButton/BasicButton';
+import { Container, Form } from 'react-bootstrap';
 
 export const ContactUpdateForm = ({ contact, hideModal }) => {
   const [name, setName] = useState(contact.name);
@@ -30,34 +30,34 @@ export const ContactUpdateForm = ({ contact, hideModal }) => {
 
   return (
     <Container>
-      <form onSubmit={handleSubmit}>
-        <Label>
-          Name
-          <Input
-            value={name}
-            onChange={handleChange}
+      <Form onSubmit={handleSubmit}>
+        <Form.Group className="mb-3" controlId="formBasicName">
+          <Form.Label className="mb-1">Name</Form.Label>
+          <Form.Control
             type="text"
             name="name"
-            placeholder="Update user email"
+            placeholder="Enter new user name"
+            onChange={handleChange}
+            value={name}
             pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
             title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
             required
           />
-        </Label>
+        </Form.Group>
 
-        <Label>
-          Number
-          <Input
-            value={number}
-            onChange={handleChange}
-            type="text"
+        <Form.Group className="mb-3" controlId="formBasicNumber">
+          <Form.Label className="mb-1">Number</Form.Label>
+          <Form.Control
+            type="number"
             name="number"
-            placeholder="Update user password"
+            placeholder="Enter new user number"
+            onChange={handleChange}
+            value={number}
             pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
             title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
             required
           />
-        </Label>
+        </Form.Group>
 
         <BasicButton
           variant="outline-success"
@@ -67,13 +67,14 @@ export const ContactUpdateForm = ({ contact, hideModal }) => {
           Update
         </BasicButton>
         <BasicButton
+          className="ms-3"
           variant="outline-warning"
           type="submit"
           onClick={() => hideModal()}
         >
           Cancel
         </BasicButton>
-      </form>
+      </Form>
     </Container>
   );
 };

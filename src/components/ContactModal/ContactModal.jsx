@@ -13,8 +13,8 @@ export const ContactModal = ({ showModal, contact, hideModal }) => {
 
   return createPortal(
     <div className={styles.modal}>
-      <div>
-        <h2>Update your contact</h2>
+      <div className="bg-light p-5 rounded">
+        <h2 className="mb-4">Update your contact</h2>
         <ContactUpdateForm contact={contact} hideModal={hideModal} />
       </div>
     </div>,

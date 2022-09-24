@@ -5,7 +5,6 @@ import PrivateRoute from './PrivateRoute';
 import PublicRoute from './PublicRoute';
 import { Loader } from '../Loader/Loader';
 
-const Navigation = lazy(() => import('../Navigation/Navigation'));
 const WelcomePage = lazy(() => import('../../pages/WelcomePage/WelcomePage'));
 const PhonebookPage = lazy(() =>
   import('../../pages/PhonebookPage/PhonebookPage')
@@ -25,20 +24,18 @@ export const UserRoutes = () => {
       }
     >
       <Routes>
-        <Route path="/" element={<Navigation />}>
-          <Route path="/" element={<WelcomePage />} />
+        <Route path="/" element={<WelcomePage />} />
 
-          <Route element={<PublicRoute />}>
-            <Route path="/register" element={<RegisterPage />} />
-            <Route path="/login" element={<LoginPage />} />
-          </Route>
-
-          <Route element={<PrivateRoute />}>
-            <Route exact path="/contacts" element={<PhonebookPage />} />
-          </Route>
-
-          <Route path="*" element={<Navigate to="/" />} />
+        <Route element={<PublicRoute />}>
+          <Route path="/register" element={<RegisterPage />} />
+          <Route path="/login" element={<LoginPage />} />
         </Route>
+
+        <Route element={<PrivateRoute />}>
+          <Route exact path="/contacts" element={<PhonebookPage />} />
+        </Route>
+
+        <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </Suspense>
   );

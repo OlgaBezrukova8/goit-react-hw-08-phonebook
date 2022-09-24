@@ -30,6 +30,7 @@ export const ContactItem = ({ data }) => {
           </p>
 
           <BasicButton
+            className="mx-3"
             onClick={() => {
               setContact({ id, name, number });
               setShowModal(true);

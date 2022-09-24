@@ -12,8 +12,6 @@ import { ContactForm } from 'components/ContactForm/ContactForm';
 import { useAuth } from 'shared/hooks/useAuth';
 import { useContacts } from 'shared/hooks/useContacts';
 
-import styles from './phonebookPage.module.css';
-
 const PhonebookPage = () => {
   const filter = useSelector(getFilter);
   const isLoggedIn = useAuth();
@@ -25,7 +23,7 @@ const PhonebookPage = () => {
   };
 
   return (
-    <div className={styles.container}>
+    <div className="container d-flex justify-content-between">
       {isLoading && <Loader />}
       {!isLoggedIn ? (
         <Navigate to="/" />

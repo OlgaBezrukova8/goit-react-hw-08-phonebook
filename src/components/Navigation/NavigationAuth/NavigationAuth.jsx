@@ -6,7 +6,7 @@ export const NavigationAuth = () => {
   const token = useToken();
 
   return (
-    <div>
+    <div className='ms-auto'>
       {token ? (
         <UserMenu />
       ) : (

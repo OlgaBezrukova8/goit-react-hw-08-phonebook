@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 
 import PropTypes from 'prop-types';
-import { Form } from 'react-bootstrap';
+import Form from 'react-bootstrap/Form';
 
 import { signUp } from 'redux/auth/auth-operations';
 import { BasicButton } from 'components/BasicButton/BasicButton';

@@ -11,13 +11,13 @@ export const NavigationMenu = () => {
     <div className="d-flex align-items-center">
       <Navbar.Brand>
         <NavLink to="/" className="text-uppercase text-decoration-none">
-          <AiOutlineQq className="" /> Phonebook
+          <AiOutlineQq size="23" /> Phonebook
         </NavLink>
 
         {token && (
           <NavLink
             to="/contacts"
-            className="text-uppercase text-decoration-none"
+            className="ms-3 text-uppercase text-decoration-none"
           >
             Contacts
           </NavLink>

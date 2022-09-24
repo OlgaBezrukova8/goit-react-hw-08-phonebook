@@ -13,10 +13,10 @@ export const UserMenu = () => {
   return (
     <div className="d-flex align-items-center">
       <div className="d-flex align-items-center">
-        <span className="py-2 px-3 bg-primary square rounded-circle text-white">
+        <span className="me-3 py-2 px-3 bg-primary square rounded-circle text-white">
           {email[0]}
         </span>
-        <p>{email}</p>
+        <p className="me-3">{email}</p>
       </div>
       <div>
         <BasicButton type="button" onClick={() => dispatch(logOut(token))}>
