@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 
 export const WelcomeContainer = ({ header, text }) => {
   return (
-    <div className="container">
+    <div className="mb-3">
       <h1>{header}</h1>
       <p>{text}</p>
     </div>

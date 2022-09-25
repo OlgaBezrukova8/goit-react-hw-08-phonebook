@@ -27,7 +27,7 @@ export const LoginForm = () => {
   };
 
   return (
-    <Form onSubmit={handleSubmit} className="mb-3 mt-3">
+    <Form onSubmit={handleSubmit} className="mb-3">
       <Row>
         <Col md>
           <Form.Group className="mb-3" controlId="formBasicEmail">

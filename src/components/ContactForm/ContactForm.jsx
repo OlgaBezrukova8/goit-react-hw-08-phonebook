@@ -8,7 +8,7 @@ import { getContact } from 'redux/contacts/contacts-selectors';
 import { useContacts } from 'shared/hooks/useContacts';
 
 import { BasicButton } from 'components/BasicButton/BasicButton';
-import { Container, Form } from 'react-bootstrap';
+import { Form } from 'react-bootstrap';
 
 export const ContactForm = () => {
   const [name, setName] = useState('');
@@ -50,41 +50,45 @@ export const ContactForm = () => {
   };
 
   return (
-    <Container>
-      <Form onSubmit={handleReset}>
-        <Form.Group className="mb-3" controlId="formBasicName">
-          <Form.Label>Name</Form.Label>
-          <Form.Control
-            type="text"
-            name="name"
-            placeholder="Enter name"
-            onChange={handleChange}
-            value={name}
-            pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-            title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-            required
-          />
-        </Form.Group>
+    <Form onSubmit={handleReset}>
+      <Form.Group className="mb-3" controlId="formBasicName">
+        <Form.Label className="mb-1">Name</Form.Label>
+        <Form.Control
+          type="text"
+          name="name"
+          placeholder="Enter name"
+          onChange={handleChange}
+          value={name}
+          pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+          title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
+          required
+        />
+      </Form.Group>
 
-        <Form.Group className="mb-3" controlId="formBasicNumber">
-          <Form.Label>Number</Form.Label>
-          <Form.Control
-            type="number"
-            name="tel"
-            placeholder="Enter number"
-            onChange={handleChange}
-            value={number}
-            pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-            title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
-            required
-          />
-        </Form.Group>
-
-        <BasicButton type="submit" disabled={isLoading}>
+      <Form.Group className="mb-3" controlId="formBasicNumber">
+        <Form.Label className="mb-1">Number</Form.Label>
+        <Form.Control
+          type="number"
+          name="tel"
+          placeholder="Enter number"
+          onChange={handleChange}
+          value={number}
+          pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+          title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
+          required
+        />
+      </Form.Group>
+      <div className="d-grid">
+        <BasicButton
+          className="mt-1"
+          size="md"
+          type="submit"
+          disabled={isLoading}
+        >
           Add contact
         </BasicButton>
-      </Form>
-    </Container>
+      </div>
+    </Form>
   );
 };
 

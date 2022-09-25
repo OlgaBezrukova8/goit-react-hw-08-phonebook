@@ -46,9 +46,9 @@ export const RegisterForm = () => {
   };
 
   return (
-    <Form onSubmit={handleReset} className=" mt-3">
+    <Form onSubmit={handleReset}>
       <Form.Group className="col-md-6 mb-3 mx-auto" controlId="formBasicName">
-        <Form.Label>Name</Form.Label>
+        <Form.Label className="mb-1">Name</Form.Label>
         <Form.Control
           type="text"
           name="name"
@@ -60,7 +60,7 @@ export const RegisterForm = () => {
       </Form.Group>
 
       <Form.Group className="col-md-6 mb-3 mx-auto" controlId="formBasicEmail">
-        <Form.Label>Email</Form.Label>
+        <Form.Label className="mb-1">Email</Form.Label>
         <Form.Control
           type="email"
           name="email"
@@ -78,7 +78,7 @@ export const RegisterForm = () => {
         className="col-md-6 mb-3 mx-auto"
         controlId="formBasicPassword"
       >
-        <Form.Label>Password</Form.Label>
+        <Form.Label className="mb-1">Password</Form.Label>
         <Form.Control
           type="password"
           name="password"
@@ -92,7 +92,11 @@ export const RegisterForm = () => {
         </Form.Text>
       </Form.Group>
 
-      <BasicButton type="submit">Sign up</BasicButton>
+      <div className="d-grid col-md-6 mx-auto">
+        <BasicButton className="mt-1" size="md" type="submit">
+          Sign up
+        </BasicButton>
+      </div>
     </Form>
   );
 };

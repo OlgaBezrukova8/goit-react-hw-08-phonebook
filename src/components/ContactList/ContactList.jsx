@@ -11,7 +11,7 @@ export const ContactList = () => {
   const contacts = useSelector(getContact);
 
   return (
-    <ListGroup variant="flush">
+    <ListGroup >
       <ContactItem data={getFilteredContacts(contacts, filter)} />
     </ListGroup>
   );

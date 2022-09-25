@@ -24,8 +24,12 @@ export const ContactItem = ({ data }) => {
         hideModal={() => setShowModal(false)}
       />
       {getFilteredContacts(data).map(({ id, name, number }) => (
-        <ListGroup.Item className="d-flex p-2 align-items-center" key={id}>
-          <p>
+        <ListGroup.Item
+          variant="primary"
+          className="d-flex p-2 align-items-center"
+          key={id}
+        >
+          <p className="text-black">
             {name}: {number}
           </p>
 

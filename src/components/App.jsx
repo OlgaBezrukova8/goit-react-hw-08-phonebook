@@ -24,7 +24,7 @@ export const App = () => {
   return (
     <>
       <Navigation />
-      <Container className='pt-4' fluid>
+      <Container className="pt-4" fluid>
         <UserRoutes />
       </Container>
     </>

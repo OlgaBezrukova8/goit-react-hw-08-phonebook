@@ -6,13 +6,20 @@ export const NavigationAuth = () => {
   const token = useToken();
 
   return (
-    <div className='ms-auto'>
+    <div className="ms-auto">
       {token ? (
         <UserMenu />
       ) : (
         <>
-          <NavLink to="/register">Sign up</NavLink>
-          <NavLink to="/login">Login</NavLink>
+          <NavLink
+            className="me-2 text-uppercase text-decoration-none"
+            to="/register"
+          >
+            Sign up
+          </NavLink>
+          <NavLink className="text-uppercase text-decoration-none" to="/login">
+            Login
+          </NavLink>
         </>
       )}
     </div>

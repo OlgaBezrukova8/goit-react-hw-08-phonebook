@@ -1,20 +1,25 @@
 import { Link } from 'react-router-dom';
+
 import { WelcomeContainer } from 'components/WelcomeContainer/WelcomeContainer';
-import { useAuth } from 'shared/hooks/useAuth';
 import { LoginForm } from 'components/LoginForm/LoginForm';
+
+import { useAuth } from 'shared/hooks/useAuth';
+import Container from 'react-bootstrap/Container';
 
 const WelcomePage = () => {
   const isLoggedIn = useAuth();
 
   return (
-    <>
+    <Container className="pt-4">
       {isLoggedIn ? (
         <>
           <WelcomeContainer
-            header="You are successfully logged into your account, enjoy"
+            header="You are successfully logged into your account, enjoy :)"
             text="You can now add and update contacts."
           />
-          <Link to="/contacts">Add new contacts</Link>
+          <Link className="text-decoration-none text-uppercase" to="/contacts">
+            Add new contacts
+          </Link>
         </>
       ) : (
         <>
@@ -23,13 +28,16 @@ const WelcomePage = () => {
             text="Here you can store all the contacts you need to keep in touch. You can also easily update or delete contacts that are out of date."
           />
           <LoginForm />
-          <div>
-            <p>If you're not already registered, go to</p>
-            <Link to="/register">Register now</Link>
-          </div>
+          <p className="mt-4">
+            If you're not registered -{' '}
+            <Link className="text-decoration-none" to="/register">
+              sign up
+            </Link>{' '}
+            now.
+          </p>
         </>
       )}
-    </>
+    </Container>
   );
 };
 

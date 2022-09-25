@@ -10,19 +10,21 @@ export const NavigationMenu = () => {
   return (
     <div className="d-flex align-items-center">
       <Navbar.Brand>
-        <NavLink to="/" className="text-uppercase text-decoration-none">
-          <AiOutlineQq size="23" /> Phonebook
-        </NavLink>
-
-        {token && (
-          <NavLink
-            to="/contacts"
-            className="ms-3 text-uppercase text-decoration-none"
-          >
-            Contacts
-          </NavLink>
-        )}
+        <AiOutlineQq className="d-block text-primary" size="23" />
       </Navbar.Brand>
+
+      <NavLink to="/" className="text-uppercase text-decoration-none">
+        Phonebook
+      </NavLink>
+
+      {token && (
+        <NavLink
+          to="/contacts"
+          className="ms-3 text-uppercase text-decoration-none"
+        >
+          Contacts
+        </NavLink>
+      )}
     </div>
   );
 };

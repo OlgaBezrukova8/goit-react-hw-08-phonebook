@@ -1,18 +1,24 @@
 import { Outlet } from 'react-router-dom';
-import { NavigationMenu } from '../Navigation/NavigationMenu/NavigationMenu';
-import { NavigationAuth } from '../Navigation/NavigationAuth/NavigationAuth';
+import { NavigationMenu } from './NavigationMenu/NavigationMenu';
+import { NavigationAuth } from './NavigationAuth/NavigationAuth';
 
-import { Container, Navbar } from 'react-bootstrap';
+import { Container, Navbar, Nav } from 'react-bootstrap';
 
 export const Navigation = () => {
   return (
     <>
-      <Navbar className="navbar sticky-top bg-light">
-        <Container className="container" fluid>
-          <NavigationMenu />
-          <Navbar.Collapse>
+      <Navbar
+        expand="lg"
+        className="navbar sticky-top"
+        bg="dark"
+      >
+        <Container>
+          <Nav className="me-auto">
+            <NavigationMenu />
+          </Nav>
+          <Nav>
             <NavigationAuth />
-          </Navbar.Collapse>
+          </Nav>
         </Container>
       </Navbar>
 

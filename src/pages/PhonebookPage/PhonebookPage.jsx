@@ -12,6 +12,8 @@ import { ContactForm } from 'components/ContactForm/ContactForm';
 import { useAuth } from 'shared/hooks/useAuth';
 import { useContacts } from 'shared/hooks/useContacts';
 
+import Container from 'react-bootstrap/Container';
+
 const PhonebookPage = () => {
   const filter = useSelector(getFilter);
   const isLoggedIn = useAuth();
@@ -23,22 +25,22 @@ const PhonebookPage = () => {
   };
 
   return (
-    <div className="container d-flex justify-content-between">
+    <Container className="d-flex pt-4">
       {isLoading && <Loader />}
       {!isLoggedIn ? (
         <Navigate to="/" />
       ) : (
         <>
-          <div>
+          <div className="w-50 me-5">
             <Filter value={filter} onChange={onSetFilter} />
             <ContactList />
           </div>
-          <div>
+          <div className="w-50">
             <ContactForm />
           </div>
         </>
       )}
-    </div>
+    </Container>
   );
 };
 
